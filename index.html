@@ -1,32 +1,31 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Reveal.js slidedeck - Hakim El Hattab
+	 lab.hakim.se/reveal-js/                 -->
 
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js – The HTML Presentation Framework</title>
+		<title>OSM for developers</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="OSM for developers">
+		<meta name="author" content="Simone Cortesi">
 
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
 
-		<!-- Code syntax highlighting -->
+		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
 		</script>
 
 		<!--[if lt IE 9]>
@@ -41,338 +40,373 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>The HTML Presentation Framework</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
+					<h1>OSM for developers</h1>
+					<h3>or, how I stopped worrying about layers, and love the database</h3>
+					<p>Simone Cortesi <a href="http://twitter.com/simonecortesi">@simonecortesi</a></p>
 				</section>
 
 				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
+					<iframe width="99%" height="600" src='https://www.mapbox.com/show-me-the-way/'></iframe>
+				<p>OpenStreetMap is a <a href="https://www.mapbox.com/show-me-the-way/">live</a> ecosystem</p>
 				</section>
 
-				<!-- Example of nested vertical slides -->
+				<!--  Solution
+				  Geofabrik -> osm2pgsql -> postgis -> qgis -->
 				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<a href="#/2">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
-						</a>
-					</section>
+					<h2>Open Database License (ODbL)</h2>
+					<img src="images/odbl.png" />
 				</section>
 
 				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
-					</p>
+					<h2>It's <strong>difficult</strong></h2>
 				</section>
 
 				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
+					<h2>Understanding the data</h2>
+					<ul>
+						<li>there is no layer(s)</li>
+						<li>Tagging</li>
+						<li><a href="http://wiki.openstreetmap.org/wiki/Map_Features">Map Features</a>, <a href="http://taginfo.openstreetmap.org/">Taginfo</a>
+					</ul>
 				</section>
+
+				<!--  Existing Solution  -->
+				<section>
+					<h2>Existing Solutions</h2>
+					<ul>
+						<li>Linux, Virtual Machines</li>
+						<li>Osm2postgresql</li>
+						<li>OpenCageData</li>
+						<li>Geofabrik, Osm2Shp</li>
+						<li>Osm2pgsql, Osmosis</li>
+					</ul>
+				</section>
+
+				<!--  Solution
+				  Geofabrik -> osm2pgsql -> postgis -> qgis -->
+				<section>
+					<h2>Solution</h2>
+					<img src="images/geofabrik-downloads.png" /><br />
+					<img src="images/osm-logo.png" /><br />
+					<img src="images/postgis-logo.png" />
+					<img src="images/qgis-logo.png" />
+				</section>
+
+				<!--  planet  -->
+				<section>
+					<h2>OSM “planet” files</h2>
+					<ul>
+						<li>Requesting large amounts of data from API can place undue load on the OSM server</li>
+						<li>API is really designed for adding and editing data, not retrieving</li>
+						<li>So OSM also makes its data available as downloadable “planet” files in OSM XML format, containing OSM data for the entire planet</li>
+						<li>Whole planet too large for most to use directly, so  country or regional extracts available (eg. <a href="http://download.geofabrik.de">Geofabrik</a>)</li>
+					</ul>
+				</section>
+
+
+				<!--  planet  -->
+				<section>
+					<h2>OSM planet is huge</h2>
+					<ul>
+						<li>The complete OSM Data</li>
+						<li class="fragment">Latest Weekly Planet File: 33 GB</li>
+						<li class="fragment">Latest Weekly Changesets: 782 MB</li>
+					</ul>
+				</section>
+
+				<!--  map rendering  -->
+				<section>
+					<h3>Rendering the map on your PC with Tilemill</h3>
+					<img src="images/pavia.png" />
+
+				</section>
+
+				<!--  map rendering  -->
+				<section id="pavia-tilemill">
+					<h2>Tilemill</h2>
+					<ul>
+						<li>Pavia</li>
+					<li>showing building age</li>
+					<li>colorcoding based on native OSM data</li>
+					<li><pre><code>start_date=*</code></pre></li>
+					<li class="fragment">2 hour job</li>
+					<li class="fragment">tilemill is free and opensource software</li>
+				</ul>
+				</section>
+
+				<!--  web viz  -->
+				<section>
+					<h3>web visualization</h3>
+				<ul>
+					<li>Openlayers</li>
+					<li>Leaflet.JS</li>
+					<li>Modestmaps</li>
+					<li>d3.js</li>
+					<li>mapstraction</li>
+					</ul>
+				</section>
+
+
+				<!--  leaflet js  -->
+				<section>
+					<h3>Leaflet.JS</h3>
+					<img src="images/leaflet.png" />
+				</section>
+
+
+				<!--  amenity drinking water -->
+				<section>
+					<h2>overpass-api</h2>
+					<img src="images/drinking.png" />
+				</section>
+
 
 				<section>
-					<h2>Touch Optimized</h2>
-					<p>
-						Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-					</p>
+					<h2>overpass-api</h2>
+					<pre><code data-trim contenteditable>
+&lt;query type="node">
+	&lt;has-kv k="amenity" v="drinking_water"/>
+	&lt;bbox-query {{bbox}}/>&lt;!--this is auto-completed with the
+	current map view coordinates.-->
+&lt;/query>	
+				</code></pre>
 				</section>
 
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						Write content using inline or external Markdown.
-						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  Write content using inline or external Markdown.
-						  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
 
 				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
+					<h2>GIThub - integration</h2>
+					<img src="images/drinking_rome_githubio.png" />
+					<p><a href="http://geojson.io/#id=gist:anonymous/9246035&map=14/41.8907/12.4900">geojson.io</a></p>
 				</section>
 
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=slide#/transitions">Slide</a> -
-						<a href="?transition=convex#/transitions">Convex</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a>
-					</p>
+				<!--  istat -->
+				<section id="istat">
+					<h2>overpass-api</h2>
+					<h3>realtime styling</h3>
+					<img src="images/overpass-style.png" />
+					<p><a href="http://overpass-turbo.eu/s/k">overpass turbo query</a></p>
 				</section>
 
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						reveal.js comes with a few themes built in: <br>
-						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
-					</p>
-				</section>
-
+				<!--  istat -->
 				<section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code class="hljs">&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-						<h2>... and GIFs!</h2>
-					</section>
-				</section>
-
-				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-					</p>
-					<pre><code class="hljs">Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-				</section>
-
-				<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						You can override background transitions per-slide.
-					</p>
-					<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-				</section>
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code class="hljs" data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
+					<h3>ISTAT</h3>
+<pre><code><osm-script output="json">
+  <query type="area">
+    <has-kv k="name" v="Italia"/>
+  </query>
+  <query type="node">
+    <has-kv k="place"/>    <has-kv k="population"/>    <has-kv k="place" v="city"/>
+    <area-query/>
+  </query>
+  <print mode="body" order="quadtile"/>
+</osm-script>
+{{style:
+node {
+  color:blue;
+  opacity:0.2;
+  width:3;
+  fill-color:blue;
+  fill-opacity:0.4;
+  symbol-shape: circle;
+  symbol-size: eval('max(3,min(200,0.02*Math.sqrt(tag("population"))))');
 }
-					</code></pre>
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+}}</code></pre></section>
+
+
+
+				<section>
+					<h2>Wikimedia Italia</h2>
+					<img src="images/wikimedia-logo.jpg" />
 				</section>
 
 				<section>
-					<h2>Marvelous List</h2>
+					<h2>Editing the data</h2>
 					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
+						<li><a href="http://josm.openstreetmap.de">JOSM</a></li>
+							<ul><li>Standalone editor, written in Java</li>
+							<li>Powerful and flexible</li>
+							<li>Communicates with API over HTTP</li></ul>
+						<li><a href="http://wiki.openstreetmap.org/wiki/Potlatch_2">Potlatch</a></li>
+							<ul><li>Online Flash Editor</li>
+							<li>Easy to use</li></ul>
+						<li><a href="http://ideditor.com/">iD</a></li>
+							<ul><li>HTML5/JavaScript/d3.js, in early development</li></ul>
 					</ul>
 				</section>
 
+				<!--  Help
+					Help.osm is your best resource
+					or tweet osmers
+				-->
 				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							</tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							</tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
-
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-					<iframe src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-				</section>
-
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
-				</section>
-
-				<section>
-					<h2>Much more</h2>
+					<h2>Help</h2>
 					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
+						<li>help.openstreetmap.org</li>
+						<li>very active and helpfull mailinglst</li>
+						<li>Twitter <a href="http://twitter.com/openstreetmapit">@OpenstreetmapIT</a></li>
+					</ul>
+				</section>		
+
+				<section>
+					<h2>products</h2>
+					<img src="images/mat.jpg" />
+				</section>
+
+				<section>
+					<h2>products</h2>
+					<img src="images/dressmap.jpg" />
+				</section>
+
+				<section>
+					<h2>product/service</h2>
+					<img src="images/field_paper.png" />
+				</section>
+
+
+				<!--  napo				-->
+				<section>
+					<h2>Services</h2>
+					<img src="images/routing.png"/>
+					geocoding - routing - public transport - quality assurance
+				</section>
+				
+				<section>
+					<h2>Geocoding</h2>
+					<h3>Search engine services</h3>
+					<ul>
+					<li class="fragment"><a href="http://nominatim.openstreetmap.org">Nominatim</a> (official with <a href="http://wiki.openstreetmap.org/wiki/Nominatim_usage_policy">fair use policy</a> ) by <a href="http://developer.mapquest.com/web/products/open/nominatim">Mapquest</a> (data under ODbL)</li>
+					<li class="fragment"><a href="http://cloudmade.com/products/geocoding">Cloudmade</a> - with API commercial support (15$ per 100,000 transactions)</li> 
+					<li class="fragment"><a href="http://www.gisgraphy.com/premium/index.htm">GISGraphy</a> - with <a href="http://www.gisgraphy.com/premium/index.htm#sla">API commercial support</a></li> 
+					</ul>
+					<br/><br/>
+					<h3>Search engine open source software</h3>
+					<ul>
+					<li class="fragment"><a href="http://wiki.openstreetmap.org/wiki/Nominatim">Nominatim</a> php+postgresql</li>
+					<li class="fragment"><a href="http://www.gisgraphy.com/download/index.htm">GISGraphy</a> (LGPL) java+postgresql offers API for Android like Google</li>
+					<li class="fragment"><a href="http://photon.komoot.de/">Photon</a> (Apache License 2.0) java+postgresql+solr used in <a href="http://www.komoot.de">komoot</a></li>
 					</ul>
 				</section>
+				
+				<section>
+					<h2>Komoot <span style="font-size:small">(top)</span></h2>
+					<img src="images/komoot.png">
+				</section>
+				
+				<section>
+					<h2>Komoot <span style="font-size:small">(bottom)</span></h2>
+					<img src="images/komootbottom.png">
+				</section>
+				
+				<section>
+					<h2>Routing</h2>
+					<p style="text-align: left">
+					There are many offline, embedded and web-based routing services using OpenStreetMap data<br/>
+					<span class="fragment">
+					Please visit: <a href="http://wiki.openstreetmap.org/wiki/Routing">http://wiki.openstreetmap.org/wiki/Routing</a></span></p>			
+					<p  style="text-align: left">
+					<ul class="fragment">
+						<li><a href="http://pgrouting.org/">pg_routing</a>: extension for postgis with osm data support GPL,C++</li>
+						<li><a href="http://project-osrm.org/">OSRM</a> C++,BSD, research oriented   </li>
+						<li><a href="http://graphhopper.com/">Graphhoper</a> Java, Apache, Scales from big server to mobile device, works on Raspberry Pi</li>
+						<li><a href="http://www.gaia-gis.it/gaia-sins/">Spatialite</a> VirtualNetwork C, GPL/LGPL/MPL, portable</li>
+					</ul>
 
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="http://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
+					<p class="fragment">
+					... and other services in the cloud made available by Cloudmade, MapQuest, Skobbler...
 					</p>
+				</section>
+				
+				<section>
+					<h2>Public Transport</h2>
+					<p style="text-align: left">
+					<a href="http://opentripplanner.org">OpenTripPlanner</a> provides a range of passenger information and transportation network analysis features using our infrastructure for finding itineraries combining transit, pedestrian, bike, and car segments.<br/>network from osm, tpl from gtfs sources, lgpl, java
+					</p>
+					<img src="images/otp_nyc_demo_screenshot_crop.png">
+				</section>
+
+				<section>
+				<h2>quality assurance</h2>
+				... again a lot of tools <a href="http://wiki.openstreetmap.org/wiki/Quality_Assurance">http://wiki.openstreetmap.org/wiki/Quality_Assurance</a>
+				<p class="fragment">
+				We suggest to look and collaborate with <a href="http://osmose.openstreetmap.fr">OSMOSE</a><br/>
+				<img src="images/osmose.png"/>
+				</p>
+				</section>
+
+				<section>
+				<h2>OSMOSE</h2>
+				<img src="images/osmose2.png"/>
+				</section>
+
+				<section>
+				<h2>OpenStreetMap = users</h2>
+				<img src="images/neis_rome_all.png"/>
+				<br/>
+				<a href="http://resultmaps.neis-one.org/oooc?zoom=14&lat=41.90121&lon=12.50622&layers=00BTFFFFFT">Overview of OpenStreetMap Contributors</a>
+				</section>
+
+				<section>
+				<h2>The most active users in Rome</h2>
+				<img src="images/neis_people.png"/>
+				<br/>
+				<a href="http://resultmaps.neis-one.org/oooc?zoom=14&lat=41.90121&lon=12.50622&layers=00BTFFFFFT">Overview of OpenStreetMap Contributors</a>
+				</section>
+				
+				<section>
+				<h2>For Example: davio</h2>
+				<img src="images/neis_davio.png"/>
+				<br/>
+				<a href="http://resultmaps.neis-one.org/oooc?zoom=16&lat=41.90105&lon=12.49371&layers=00BTFFFFFT">Overview of OpenStreetMap Contributors</a>
+				</section>
+				
+				<section>
+				<h2>Davio's world</h2>
+				<img src="images/davio_heatmap.png"/>
+				<a href="http://www.yosmhm.neis-one.org/?Davio">Your OSM Heat Map </a>
+				</section>
+				
+				<section>
+				<h2>Davio's activity <span style="font-size:small">1/2</span></h2>
+				<img src="images/davio1_left.png"/><br/>
+				<a href="http://hdyc.neis-one.org/?Davio">How did you contribute to OpenStreetMap?</a>
+				</section>
+				
+				<section>
+				<h2>Davio's activity <span style="font-size:small">2/2</span></h2>
+				<img src="images/davio1_right.png"/><br/>
+				<a href="http://hdyc.neis-one.org/?Davio">How did you contribute to OpenStreetMap?</a>
+				</section>
+				
+				<section>
+				<h2>Davio's home</span></h2>
+				<img src="images/daviopage.png"/><br/>
+				<a href="http://www.openstreetmap.org/user/Davio">OpenStreetMap - Davio home</a>
+				</section>
+				
+				<section>
+					<h2>Don't forget: OpenStreetMap is made by people</h2>
+					<img src="images/sotm.jpg"/><br/>
+					<h2>LIKE YOU</h2>
+				</section>
+				
+				<section>
+					<h2>City of New York City and OSM</h2>
+					<img src="images/ny_change_detection.png"/><br/>
+					<a href="https://www.mapbox.com/blog/nyc-and-openstreetmap-cooperating-through-open-data/">New York City and OpenStreetMap Collaborating Through Open Data</a>
+				</section>
+				
+				<section>
+					<h2>Milano</h2>
+					<img src="images/amat.png"/><br/>
+					<a href="http://www.amat-mi.it/">amat-mi.it</a>
+				</section>
+
+				<section>
+					<h1>THANKYOU</h1>
+					<p>Simone Cortesi <a href="http://twitter.com/simonecortesi">@simonecortesi</a></p>
+					<p>Maurizio Napolitano <a href="http://twitter.com/napo">@napo</a></p>
+					<p> </p>
+					<p style="font-size:small">Slides: CC-BY-SA</p>
 				</section>
 
 			</div>
@@ -380,11 +414,11 @@ Reveal.addEventListener( 'customevent', function() {
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+		<script src="js/reveal.min.js"></script>
 
 		<script>
 
-			// Full list of configuration options available at:
+			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				controls: true,
@@ -392,16 +426,18 @@ Reveal.addEventListener( 'customevent', function() {
 				history: true,
 				center: true,
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-				// Optional reveal.js plugins
+				// Optional libraries used to extend on reveal.js
 				dependencies: [
 					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
 					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
 
