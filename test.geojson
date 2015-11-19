@@ -2586,14 +2586,12 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        
-      },
+      "properties": {},
       "geometry": {
         "type": "Point",
         "coordinates": [
-          9.235382080078125,
-          45.19002205656789
+          9.206027984619139,
+          45.1778017963802
         ]
       }
     }
